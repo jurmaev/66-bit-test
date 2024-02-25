@@ -1,5 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AppRoutes } from './const';
 import { EmployeePage, EmployeesPage } from './pages';
 import { theme } from './chakraTheme';
@@ -12,6 +12,7 @@ function App() {
         <Header />
         <BrowserRouter>
           <Routes>
+            <Route path='/' element={<Navigate to={AppRoutes.Employees} />} />
             <Route path={AppRoutes.Employees} element={<EmployeesPage />} />
             <Route path={AppRoutes.Employee} element={<EmployeePage />} />
           </Routes>

@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { useStore } from '../../store';
 import { useNavigate } from 'react-router-dom';
+import { formatDate, formatPhone } from '../../utils';
 
 export function EmployeesTable() {
   const employees = useStore((store) => store.employees);
@@ -18,7 +19,7 @@ export function EmployeesTable() {
 
   return (
     <TableContainer maxWidth='1584px' mx='auto'>
-      <Table variant='simple'>
+      <Table variant='simple' size={{base: 'sm', lg: 'md'}}>
         <Thead>
           <Tr>
             <Th fontSize={20} lineHeight={1.174} color='main.grey'>
@@ -42,8 +43,8 @@ export function EmployeesTable() {
               onClick={() => navigate(`/employees/${employee.id}`)}>
               <Td>{employee.name}</Td>
               <Td>{employee.position}</Td>
-              <Td>{employee.phone}</Td>
-              <Td>{employee.birthdate}</Td>
+              <Td>{formatPhone(employee.phone)}</Td>
+              <Td>{formatDate(employee.birthdate)}</Td>
             </Tr>
           ))}
         </Tbody>

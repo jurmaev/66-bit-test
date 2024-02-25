@@ -2,7 +2,7 @@ import { Icon, IconProps } from '@chakra-ui/react';
 
 export function ShevronRightIcon(props: IconProps) {
   return (
-    <Icon w={4} h={4} viewBox='0 0 16 17' fill='none' {...props}>
+    <Icon w={[3, 4]} h={[3, 4]} viewBox='0 0 16 17' fill='none' {...props}>
       <path
         fillRule='evenodd'
         clipRule='evenodd'

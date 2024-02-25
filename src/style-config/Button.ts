@@ -16,7 +16,19 @@ export const Button = defineStyleConfig({
       },
     },
   },
+  sizes: {
+    sm: {
+      fontSize: '12px',
+    },
+    md: {
+      fontSize: '14px',
+    },
+    lg: {
+      fontSize: '16px',
+    },
+  },
   defaultProps: {
     variant: 'solid',
+    size: 'lg',
   },
 });

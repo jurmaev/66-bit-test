@@ -3,19 +3,10 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   Container,
-  Flex,
-  Heading,
 } from '@chakra-ui/react';
 import { ShevronRightIcon } from '../../components/icons';
 import { Link, useSearchParams } from 'react-router-dom';
-import {
-  AppRoutes,
-  FilterType,
-  genderFilter,
-  positionFilter,
-  stackFilter,
-} from '../../const';
-import { MultiCheckbox } from '../../components';
+import { AppRoutes, FilterType } from '../../const';
 import { Filters } from '../../components/Filters';
 import { EmployeesTable } from '../../components/EmployeesTable/employees-table';
 import { useEffect } from 'react';
@@ -42,13 +33,13 @@ export function EmployeesPage() {
 
   return (
     <>
-      <Container>
+      <Container size={{base: 'sm', lg: 'md'}}>
         <Breadcrumb
           separator={<ShevronRightIcon />}
-          spacing={4}
-          py={7}
+          spacing={[3, 4]}
+          py={['15px', 5, 7]}
           mb={4}
-          fontSize='18px'
+          fontSize={['14px', '16px', '18px']}
           color='main.grey'>
           <BreadcrumbItem>
             <BreadcrumbLink as={Link} to='#'>
@@ -61,18 +52,6 @@ export function EmployeesPage() {
             </BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
-
-        <Flex alignItems='center' justifyContent='space-between' mb={7}>
-          <Heading as='h1' fontSize='40px'>
-            Список сотрудников
-          </Heading>
-
-          <Flex gap={8}>
-            <MultiCheckbox {...positionFilter} />
-            <MultiCheckbox {...genderFilter} />
-            <MultiCheckbox {...stackFilter} />
-          </Flex>
-        </Flex>
       </Container>
 
       <Filters />

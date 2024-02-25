@@ -4,7 +4,6 @@ export const Input = defineStyleConfig({
   variants: {
     solid: {
       field: {
-        fontsize: '20px',
         color: '#818181',
         p: '10px',
         borderRadius: '5px',
@@ -21,7 +20,19 @@ export const Input = defineStyleConfig({
       },
     },
   },
+  sizes: {
+    sm: {
+      fontSize: '12px',
+    },
+    md: {
+      fontSize: '16px',
+    },
+    lg: {
+      fontsize: '20px',
+    },
+  },
   defaultProps: {
     variant: 'solid',
+    size: 'sm',
   },
 });

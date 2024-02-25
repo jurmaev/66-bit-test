@@ -18,6 +18,7 @@ import { AppRoutes } from '../../const';
 import { useEffect } from 'react';
 import { Employee, useStore } from '../../store';
 import { api } from '../../http';
+import { formatDate, formatPhone } from '../../utils';
 
 export function EmployeePage() {
   const params = useParams();
@@ -34,13 +35,13 @@ export function EmployeePage() {
   if (!employee) return null;
 
   return (
-    <Container pb={4}>
+    <Container pb={4} size={{ base: 'sm', lg: 'md' }}>
       <Breadcrumb
         separator={<ShevronRightIcon />}
         spacing={4}
-        py={7}
+        py={['15px', 5, 7]}
         mb={4}
-        fontSize='18px'
+        fontSize={['14px', '16px', '18px']}
         color='main.grey'>
         <BreadcrumbItem>
           <BreadcrumbLink as={Link} to='#'>
@@ -98,9 +99,9 @@ export function EmployeePage() {
           <Text>Дата устройства:</Text>
         </VStack>
         <VStack align='left' spacing={6}>
-          <Text>{employee.phone}</Text>
-          <Text>{employee.birthdate}</Text>
-          <Text>{employee.dateOfEmployment}</Text>
+          <Text>{formatPhone(employee.phone)}</Text>
+          <Text>{formatDate(employee.birthdate)}</Text>
+          <Text>{formatDate(employee.dateOfEmployment)}</Text>
         </VStack>
       </Flex>
     </Container>

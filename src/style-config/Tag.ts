@@ -12,9 +12,6 @@ const baseStyle = definePartsStyle({
     bgColor: 'main.white',
     borderRadius: '5px',
   },
-  label: {
-    fontSize: '16px',
-  },
 });
 
 const greyStyle = definePartsStyle({

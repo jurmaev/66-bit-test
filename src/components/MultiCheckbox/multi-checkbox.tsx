@@ -24,19 +24,20 @@ export function MultiCheckbox({ title, items, type }: MultiCheckboxProps) {
   return (
     <>
       <Popover
-        placement='bottom-start'
+        placement='bottom-end'
         gutter={0}
         isOpen={isOpen}
         onClose={onClose}>
         <PopoverTrigger>
           <Button
             background='transparent'
-            fontSize='20px'
-            gap={3}
+            fontSize={['12px', '16px', '20px']}
+            gap={[2, 3]}
             p={0}
             _hover={{ background: 'transparent' }}
             color={isOpen ? 'main.blue' : ''}
-            onClick={onToggle}>
+            onClick={onToggle}
+            height='initial'>
             {title}
             <ChevronBottomIcon
               transition='transform 0.3s ease-in-out'
@@ -53,13 +54,14 @@ export function MultiCheckbox({ title, items, type }: MultiCheckboxProps) {
           borderTop='1px solid #155DA4'>
           <PopoverBody p={0}>
             <CheckboxGroup value={value} onChange={setValue}>
-              <Stack direction='column' spacing={4}>
+              <Stack direction='column' spacing={[3, 4]}>
                 {items.map((item) => (
                   <Flex
                     key={item.value}
                     alignItems='center'
                     justifyContent='space-between'
-                    gap='38px'>
+                    gap='38px'
+                    fontSize={['12px', '14px', '16px']}>
                     {item.name}
                     <Checkbox
                       value={item.value}
