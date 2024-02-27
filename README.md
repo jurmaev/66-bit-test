@@ -7,5 +7,3 @@ npm install
 npm run build
 npm run preview
 ```
-
-Deploy: https://nimble-kangaroo-ddc9c8.netlify.app/
