@@ -44,7 +44,7 @@ export function Header() {
           <Switch
             onChange={toggleColorMode}
             isChecked={colorMode === 'dark'}
-            ml={12}
+            ml={{ base: 'auto', md: 12 }}
             sx={{
               '.chakra-switch__track': {
                 backgroundColor: 'main.blue',
@@ -65,7 +65,7 @@ export function Header() {
                 backgroundImage: 'url(./img/moon-icon.svg)',
                 transform: 'translateX(29px)',
               },
-              '@media (min-width: 480px)': {
+              '@media (max-width: 480px)': {
                 '.chakra-switch__track': {
                   width: '41px',
                 },

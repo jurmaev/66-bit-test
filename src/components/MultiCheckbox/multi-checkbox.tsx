@@ -21,7 +21,11 @@ export function MultiCheckbox({ title, items, type }: MultiCheckboxProps) {
   const { isOpen, onToggle, onClose } = useDisclosure();
   const addFilter = useStore((store) => store.addFilter);
   const removeFilter = useStore((store) => store.removeFilter);
-  const { value, setValue } = useCheckboxGroup();
+  const filters = useStore((store) => store.filters);
+  const initialValue = filters
+    .filter((filter) => filter.type === type)
+    .map((filter) => filter.value);
+  const { value, setValue } = useCheckboxGroup({ value: initialValue });
 
   return (
     <>
@@ -39,7 +43,7 @@ export function MultiCheckbox({ title, items, type }: MultiCheckboxProps) {
             _hover={{ background: 'transparent' }}
             color={isOpen ? 'main.blue' : ''}
             onClick={onToggle}
-            fontWeight={colorMode === 'light' ? 600 : 400}
+            fontWeight={{ base: 400, lg: colorMode === 'light' ? 600 : 400 }}
             height='initial'>
             {title}
             <ChevronBottomIcon

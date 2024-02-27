@@ -12,20 +12,17 @@ const baseStyle = definePartsStyle((props: StyleFunctionProps) => ({
     fontWeight: 500,
     fontFamily: '"Raleway", sans-serif',
     textTransform: 'none',
-    borderColor: 'secondary.grey',
   },
   tr: {
     _hover: {
       bg: props.colorMode === 'light' ? 'secondary.grey' : '#3E3E3E',
     },
   },
-  td: {
-    borderColor: 'secondary.grey',
-  },
 }));
 
 const mdStyle = definePartsStyle({
   th: {
+    lineHeight: 1.174,
     fontSize: '20px',
     py: 7,
     paddingY: 7,
@@ -33,6 +30,7 @@ const mdStyle = definePartsStyle({
     paddingX: 3,
   },
   td: {
+    lineHeight: 1.174,
     fontSize: '20px',
     px: 3,
     paddingX: 3,
@@ -43,6 +41,7 @@ const mdStyle = definePartsStyle({
 
 const smStyle = definePartsStyle({
   th: {
+    lineHeight: 1.174,
     fontSize: '10px',
     _first: { pl: 6 },
     _last: {
@@ -50,6 +49,7 @@ const smStyle = definePartsStyle({
     },
   },
   td: {
+    lineHeight: 1.174,
     fontSize: '12px',
     py: 3,
     _first: {
@@ -66,8 +66,22 @@ const sizes = {
   md: mdStyle,
 };
 
+const simpleVariant = definePartsStyle({
+  th: {
+    borderColor: 'secondary.grey',
+  },
+  td: {
+    borderColor: 'secondary.grey',
+  },
+});
+
+const variants = {
+  simple: simpleVariant,
+};
+
 export const Table = defineMultiStyleConfig({
   baseStyle,
   sizes,
-  defaultProps: { variant: 'md' },
+  variants,
+  defaultProps: { variant: 'simple' },
 });

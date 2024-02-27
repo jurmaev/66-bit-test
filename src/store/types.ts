@@ -29,8 +29,8 @@ export type Employee = {
 };
 
 export type State = {
-  // search: string;
-  // setSearch: (value: string) => void;
+  search: string;
+  setSearch: (value: string) => void;
   filters: Filter[];
   addFilter: (filter: Filter) => void;
   removeFilter: (filter: Filter) => void;
@@ -39,4 +39,6 @@ export type State = {
   fillEmployees: (employees: Employee[]) => void;
   employee: Employee | null;
   setEmployee: (employee: Employee) => void;
+  page: number;
+  increasePage: () => void;
 };

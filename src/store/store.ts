@@ -2,8 +2,13 @@ import { create } from 'zustand';
 import { State } from './types';
 
 export const useStore = create<State>()((set) => ({
-  // search: '',
-  // setSearch(value) {},
+  search: '',
+  setSearch(value) {
+    set((state) => ({
+      ...state,
+      search: value,
+    }));
+  },
   filters: [],
   addFilter(filter) {
     set((state) => {
@@ -40,6 +45,12 @@ export const useStore = create<State>()((set) => ({
     set((state) => ({
       ...state,
       employee: employee,
+    }));
+  },
+  page: 1,
+  increasePage() {
+    set((state) => ({
+      page: state.page + 1,
     }));
   },
 }));

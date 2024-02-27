@@ -15,7 +15,6 @@ import {
 import { Employee, useStore } from '../../store';
 import { CancelIcon, MultiCheckbox } from '..';
 import { api } from '../../http';
-import { useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { genderFilter, positionFilter, stackFilter } from '../../const';
 
@@ -25,7 +24,8 @@ export function Filters() {
   const [, setSearchParams] = useSearchParams();
   const removeFilter = useStore((store) => store.removeFilter);
   const fillEmployees = useStore((store) => store.fillEmployees);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const searchValue = useStore((store) => store.search);
+  const setSearch = useStore((store) => store.setSearch);
 
   function onSearchClick() {
     const params = new URLSearchParams();
@@ -34,8 +34,8 @@ export function Filters() {
       params.append(filter.type, filter.value);
     }
 
-    if (inputRef.current && inputRef.current.value !== '') {
-      params.append('Name', inputRef.current.value);
+    if (searchValue !== '') {
+      params.append('Name', searchValue);
     }
 
     setSearchParams(params);
@@ -48,7 +48,7 @@ export function Filters() {
 
   return (
     <>
-      <Container mb={7} size={{ base: 'sm', lg: 'md' }}>
+      <Container mb={[4, 5, 6, 7]} size={{ base: 'sm', lg: 'md' }}>
         <Grid
           alignItems='center'
           gap={[3, 4, 7]}
@@ -76,13 +76,16 @@ export function Filters() {
           <GridItem area={'search'}>
             <Input
               placeholder='Поиск'
-              ref={inputRef}
+              value={searchValue}
+              onChange={(evt) => setSearch(evt.target.value)}
               size={{ base: 'sm', md: 'md', lg: 'lg' }}
             />
           </GridItem>
         </Grid>
       </Container>
-      <Box bgColor={colorMode === 'light' ? 'secondary.grey' : '#3E3E3E'}>
+      <Box
+        bgColor={colorMode === 'light' ? 'secondary.grey' : '#3E3E3E'}
+        mb={{ base: 5, lg: 0 }}>
         <Container
           py={[4, '13px']}
           fontWeight={500}
@@ -93,7 +96,7 @@ export function Filters() {
             gap={[3, 5, 7, 10]}
             flexDirection={{ base: 'column', lg: 'row' }}>
             Выбранные фильтры:
-            <HStack spacing={[4, 5, 6]} mb={{ base: 1, lg: 0 }}>
+            <HStack spacing={[4, 5, 6]} mb={{ base: 1, lg: 0 }} flexWrap='wrap'>
               {filters.map((filter) => (
                 <Tag key={filter.value}>
                   <CancelIcon
