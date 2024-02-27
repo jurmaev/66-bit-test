@@ -29,10 +29,16 @@ export const useStore = create<State>()((set) => ({
   },
   employees: [],
   appendEmployees(employees) {
-    set((state) => ({
-      ...state,
-      employees: [...state.employees, ...employees],
-    }));
+    set((state) => {
+      const existingIds = state.employees.map((employee) => employee.id);
+      const newEmployees = employees.filter(
+        (employee) => !existingIds.includes(employee.id)
+      );
+      return {
+        ...state,
+        employees: [...state.employees, ...newEmployees],
+      };
+    });
   },
   fillEmployees(employees) {
     set((state) => ({

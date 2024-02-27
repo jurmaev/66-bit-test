@@ -6,7 +6,6 @@ import {
   Th,
   Thead,
   Tr,
-  useColorMode,
 } from '@chakra-ui/react';
 import { Employee, useStore } from '../../store';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -22,9 +21,6 @@ export function EmployeesTable() {
   const targetRef = useRef<HTMLTableRowElement>(null);
   const appendEmployees = useStore((store) => store.appendEmployees);
   const [searchParams] = useSearchParams();
-  const { colorMode } = useColorMode();
-
-  console.log(page);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -57,10 +53,7 @@ export function EmployeesTable() {
 
   return (
     <TableContainer maxWidth='1584px' mx='auto'>
-      <Table
-        variant='simple'
-        size={{ base: 'sm', lg: 'md' }}
-        >
+      <Table variant='simple' size={{ base: 'sm', lg: 'md' }}>
         <Thead>
           <Tr>
             <Th w='40%' fontSize={20} lineHeight={1.174} color='main.grey'>
