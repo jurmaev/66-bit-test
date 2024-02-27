@@ -1,11 +1,12 @@
 import {
-  Box,
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   Container,
   Divider,
   Flex,
+  Grid,
+  GridItem,
   Heading,
   Image,
   Tag,
@@ -39,11 +40,14 @@ export function EmployeePage() {
       <Breadcrumb
         separator={<ShevronRightIcon />}
         spacing={4}
+        overflow='hidden'
+        whiteSpace='nowrap'
+        textOverflow='ellipsis'
         py={['15px', 5, 7]}
-        mb={4}
+        mb={[2, 3, 4]}
         fontSize={['14px', '16px', '18px']}
         color='main.grey'>
-        <BreadcrumbItem>
+        <BreadcrumbItem display={{ base: 'none', lg: 'initial' }}>
           <BreadcrumbLink as={Link} to='#'>
             Главная
           </BreadcrumbLink>
@@ -63,36 +67,63 @@ export function EmployeePage() {
         </BreadcrumbItem>
       </Breadcrumb>
 
-      <Flex gap='42px' alignItems='center' mb={10}>
-        <Image
-          borderRadius='full'
-          boxSize='163px'
-          src={employee.photo}
-          alt={employee.name}
-        />
-        <Box>
-          <Heading as='h1' mb={4} fontSize='40px' fontWeight={700}>
+      <Grid
+        mb={[5, 8, 10]}
+        gap={{ base: '12px 16px', md: '32px', lg: '24px 42px' }}
+        alignItems={{ base: 'start', lg: 'center' }}
+        gridTemplateAreas={{
+          base: `'image info'
+        'stack stack'`,
+          lg: `'image info'
+        'image stack'`,
+        }}
+        gridTemplateColumns={{
+          base: '100px 1fr',
+          md: '130px 1fr',
+          lg: '163px 1fr',
+        }}>
+        <GridItem gridArea={'image'}>
+          <Image borderRadius='full' src={employee.photo} alt={employee.name} />
+        </GridItem>
+        <GridItem gridArea={'info'}>
+          <Heading
+            as='h1'
+            mb={[2, 3, 4]}
+            fontSize={{ base: '20px', md: '30px', lg: '40px' }}
+            fontWeight={700}>
             {employee.name}
           </Heading>
-          <Text mb={6} fontSize='24px' fontWeight={500}>
+          <Text
+            fontSize={{ base: '14px', md: '19px', lg: '24px' }}
+            fontWeight={500}>
             {employee.position}
           </Text>
-          <Flex gap={4}>
+        </GridItem>
+        <GridItem gridArea={'stack'}>
+          <Flex gap={[2, 3, 4]} flexWrap={'wrap'}>
             {employee.stack.map((stack) => (
-              <Tag key={stack} variant='grey'>
+              <Tag
+                key={stack}
+                variant='grey'
+                fontSize={{ base: '12px', md: '14px', lg: '16px' }}>
                 {stack}
               </Tag>
             ))}
           </Flex>
-        </Box>
-      </Flex>
+        </GridItem>
+      </Grid>
 
-      <Divider mb={10} />
+      <Divider mb={[5, 8, 10]} />
 
-      <Heading fontSize='36px' fontWeight={600} mb={8}>
+      <Heading
+        fontSize={{ base: '24px', md: '30px', lg: '36px' }}
+        fontWeight={600}
+        mb={[4, 6, 8]}>
         Основная информация
       </Heading>
-      <Flex fontSize='24px' gap='44px'>
+      <Flex
+        fontSize={['14px', '19px', '24px']}
+        gap={['18px', '24px', '36px', '44px']}>
         <VStack align='left' fontWeight={500} spacing={6}>
           <Text>Контактный телефон:</Text>
           <Text>Дата рождения:</Text>

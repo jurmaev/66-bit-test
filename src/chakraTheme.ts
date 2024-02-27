@@ -1,4 +1,4 @@
-import { extendTheme } from '@chakra-ui/react';
+import { StyleFunctionProps, extendTheme } from '@chakra-ui/react';
 import styleConfig from './style-config';
 
 export const theme = extendTheme({
@@ -11,13 +11,14 @@ export const theme = extendTheme({
     '2xl': '1536px',
   },
   styles: {
-    global: {
+    global: (props: StyleFunctionProps) => ({
       body: {
         fontFamily: '"Raleway", sans-serif',
-        color: 'main.black',
+        color: props.colorMode === 'dark' ? 'secondary.white' : 'main.black',
         lineHeight: '1.174',
+        bgColor: props.colorMode === 'dark' ? 'main.black' : 'main.white',
       },
-    },
+    }),
   },
   components: { ...styleConfig },
   colors: {
@@ -29,6 +30,9 @@ export const theme = extendTheme({
     },
     secondary: {
       grey: '#F2F2F2',
+      white: '#F5F5F5',
     },
   },
+  initialColorMode: 'light',
+  useSystemColorMode: true,
 });

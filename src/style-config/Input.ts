@@ -4,6 +4,7 @@ export const Input = defineStyleConfig({
   variants: {
     solid: {
       field: {
+        bgColor: 'transparent',
         color: '#818181',
         p: '10px',
         borderRadius: '5px',

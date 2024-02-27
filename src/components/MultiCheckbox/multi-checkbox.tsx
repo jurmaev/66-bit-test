@@ -10,12 +10,14 @@ import {
   Flex,
   useDisclosure,
   useCheckboxGroup,
+  useColorMode,
 } from '@chakra-ui/react';
 import { MultiCheckboxProps } from './types';
 import { ChevronBottomIcon } from '..';
 import { useStore } from '../../store';
 
 export function MultiCheckbox({ title, items, type }: MultiCheckboxProps) {
+  const { colorMode } = useColorMode();
   const { isOpen, onToggle, onClose } = useDisclosure();
   const addFilter = useStore((store) => store.addFilter);
   const removeFilter = useStore((store) => store.removeFilter);
@@ -33,10 +35,11 @@ export function MultiCheckbox({ title, items, type }: MultiCheckboxProps) {
             background='transparent'
             fontSize={['12px', '16px', '20px']}
             gap={[2, 3]}
-            p={0}
+            p={[0, 1, 2]}
             _hover={{ background: 'transparent' }}
             color={isOpen ? 'main.blue' : ''}
             onClick={onToggle}
+            fontWeight={colorMode === 'light' ? 600 : 400}
             height='initial'>
             {title}
             <ChevronBottomIcon
@@ -49,6 +52,7 @@ export function MultiCheckbox({ title, items, type }: MultiCheckboxProps) {
           border='none'
           w='initial'
           p={5}
+          bgColor={colorMode === 'light' ? 'main.white' : 'main.black'}
           boxShadow='0px 4px 4px 0px #00000040'
           borderRadius={0}
           borderTop='1px solid #155DA4'>

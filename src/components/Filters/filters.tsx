@@ -10,6 +10,7 @@ import {
   Input,
   Tag,
   TagLabel,
+  useColorMode,
 } from '@chakra-ui/react';
 import { Employee, useStore } from '../../store';
 import { CancelIcon, MultiCheckbox } from '..';
@@ -19,6 +20,7 @@ import { useSearchParams } from 'react-router-dom';
 import { genderFilter, positionFilter, stackFilter } from '../../const';
 
 export function Filters() {
+  const { colorMode } = useColorMode();
   const filters = useStore((store) => store.filters);
   const [, setSearchParams] = useSearchParams();
   const removeFilter = useStore((store) => store.removeFilter);
@@ -80,7 +82,7 @@ export function Filters() {
           </GridItem>
         </Grid>
       </Container>
-      <Box bgColor='secondary.grey'>
+      <Box bgColor={colorMode === 'light' ? 'secondary.grey' : '#3E3E3E'}>
         <Container
           py={[4, '13px']}
           fontWeight={500}

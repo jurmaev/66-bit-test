@@ -1,21 +1,28 @@
-import { createMultiStyleConfigHelpers } from '@chakra-ui/react';
+import {
+  StyleFunctionProps,
+  createMultiStyleConfigHelpers,
+} from '@chakra-ui/react';
 import { tableAnatomy } from '@chakra-ui/anatomy';
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(tableAnatomy.keys);
 
-const baseStyle = definePartsStyle({
+const baseStyle = definePartsStyle((props: StyleFunctionProps) => ({
   th: {
     fontWeight: 500,
     fontFamily: '"Raleway", sans-serif',
     textTransform: 'none',
+    borderColor: 'secondary.grey',
   },
   tr: {
     _hover: {
-      bg: 'secondary.grey',
+      bg: props.colorMode === 'light' ? 'secondary.grey' : '#3E3E3E',
     },
   },
-});
+  td: {
+    borderColor: 'secondary.grey',
+  },
+}));
 
 const mdStyle = definePartsStyle({
   th: {
