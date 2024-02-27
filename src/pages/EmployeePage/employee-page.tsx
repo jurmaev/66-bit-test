@@ -20,6 +20,7 @@ import { useEffect } from 'react';
 import { Employee, useStore } from '../../store';
 import { api } from '../../http';
 import { formatDate, formatPhone } from '../../utils';
+import { NotFoundPage } from '..';
 
 export function EmployeePage() {
   const params = useParams();
@@ -33,7 +34,9 @@ export function EmployeePage() {
       .then((data) => setEmployee(data));
   }, [setEmployee, params]);
 
-  if (!employee) return null;
+  if (!employee) {
+    return <NotFoundPage />;
+  }
 
   return (
     <Container pb={4} size={{ base: 'sm', lg: 'md' }}>
